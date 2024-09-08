@@ -3,11 +3,13 @@ import Image from "next/image";
 import { useState } from "react";
 import { X, AlignLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation"; // Import usePathname
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
+  const pathname = usePathname(); // Get the current pathname
+
   const Links = [
     { id: 1, name: "Home", link: "/" },
     { id: 2, name: "Pokemon", link: "/pokemon" },
@@ -16,8 +18,8 @@ const Navbar = () => {
 
   // Function to handle clearing search and navigating to '/'
   const handleHomeClick = () => {
-    router.push("/"); // Navigate to '/'
-    setOpen(false); // Close the mobile menu if it's open
+    router.push("/");
+    setOpen(false);
   };
 
   return (
@@ -45,11 +47,17 @@ const Navbar = () => {
           {Links.map((link) => (
             <li key={link.id} className="font-semibold py-3 md:py-0">
               <div
-                className="text-gray-950 hover:text-amber-500 duration-200 cursor-pointer"
+                className={cn(
+                  "text-gray-950 hover:text-amber-500 duration-200 cursor-pointer",
+                  pathname === link.link ? "text-amber-700" : "" // Apply active style if the link is active
+                )}
                 onClick={
                   link.link === "/"
                     ? handleHomeClick
-                    : () => router.push(link.link)
+                    : () => {
+                        router.push(link.link);
+                        setOpen(false); // Close the menu on navigation
+                      }
                 }
               >
                 {link.name}

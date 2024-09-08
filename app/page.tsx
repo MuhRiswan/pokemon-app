@@ -1,6 +1,6 @@
-import PokemonList from "@/app/_components/PokemonList";
 import { fetchPokemon } from "@/hooks/getPokemon";
 import { Search } from "./_components/Search";
+import PokemonList from "./_components/PokemonList";
 
 const Page = async ({ searchParams }: { searchParams?: any }) => {
   const search =
