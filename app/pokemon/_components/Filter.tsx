@@ -54,7 +54,7 @@ export const Filter = ({
           id="type-filters"
           className="block text-sm font-medium"
         >
-          Select Pokemon Type:
+          Select Pokemon Type
         </label>
         <Select
           key="select-instanc-1"
@@ -73,7 +73,7 @@ export const Filter = ({
           id="ability-filters"
           className="block text-sm font-medium"
         >
-          Select Pokemon Ability:
+          Select Pokemon Ability
         </label>
         <Select
           key="select-instanc-2"
